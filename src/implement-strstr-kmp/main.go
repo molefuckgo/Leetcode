@@ -6,9 +6,12 @@ import (
 
 func main() {
 	// txt := ""
-	needle := "abababaab"
-	haystack := "cbabcabababaabab"
-	fmt.Println(strStr(haystack, needle))
+	// "mississippi"
+	// "issip"
+	needle := "issip"
+	haystack := "mississippi"
+	fmt.Println(strStrLast(haystack, needle))
+	// fmt.Println(nextArr3(needle, len(needle)))
 }
 
 // func strStr(haystack string, needle string) int {
@@ -87,7 +90,7 @@ func strStr(haystack string, needle string) int {
 	if lenNeedle == 0 {
 		return 0
 	}
-	if len(haystack) < lenNeedle {
+	if lenHaystack < lenNeedle {
 		return -1
 	}
 	next := nextArr1(needle, lenNeedle)
@@ -114,6 +117,38 @@ func strStr(haystack string, needle string) int {
 		}
 	}
 	return -1 // 未找到
+}
+func strStr2(haystack string, needle string) int {
+	lenHaystack := len(haystack)
+	lenNeedle := len(needle)
+	if lenNeedle == 0 {
+		return 0
+	}
+	if lenNeedle > lenHaystack {
+		return -1
+	}
+	i := 0
+	j := 0
+	length := 0
+	next := nextArr3(needle, lenNeedle)
+	for i < lenHaystack {
+		if needle[j] != haystack[i] {
+			if j == 0 {
+				i++
+			} else {
+				j = next[j-1]
+			}
+			length = j
+		} else {
+			i++
+			j++
+			length++
+		}
+		if length == lenNeedle {
+			return i - length
+		}
+	}
+	return -1
 }
 
 func nextArr(needle string, lenNeedle int) []int {
@@ -157,6 +192,86 @@ func nextArr1(needle string, lenNeedle int) []int {
 		}
 		if needle[i] == needle[preNextVal] {
 			preNextVal += 1
+		}
+		next[i] = preNextVal
+	}
+	return next
+}
+
+func nextArr2(needle string, lenNeedle int) []int {
+	next := make([]int, lenNeedle)
+	for i := 1; i < lenNeedle; i++ {
+		preNextVal := next[i-1]
+		for preNextVal > 0 && needle[preNextVal] != needle[i] {
+			preNextVal = next[preNextVal-1]
+		}
+		if needle[i] == needle[preNextVal] {
+			preNextVal += 1
+		}
+		next[i] = preNextVal
+	}
+	return next
+}
+
+func nextArr3(needle string, lenNeedle int) []int {
+	next := make([]int, lenNeedle)
+	for i := 1; i < lenNeedle; i++ {
+		preNextVal := next[i-1]
+		for preNextVal > 0 && needle[i] != needle[preNextVal] {
+			preNextVal = next[preNextVal-1]
+		}
+		if needle[i] == needle[preNextVal] {
+			preNextVal++
+		}
+		next[i] = preNextVal
+	}
+	return next
+}
+
+func strStrLast(haystack string, needle string) int {
+	lenHaystack := len(haystack)
+	lenNeedle := len(needle)
+	if lenNeedle > lenHaystack {
+		return -1
+	}
+	if lenNeedle == 0 {
+		return 0
+	}
+	next := nextArrLast(needle, lenNeedle)
+	i := 0
+	j := 0
+	length := 0
+
+	for i < lenHaystack {
+		if haystack[i] == needle[j] {
+			j++
+			i++
+			length++
+		} else {
+			if j == 0 {
+				i++
+			} else {
+				j = next[j-1]
+			}
+			length = j
+		}
+		if lenNeedle == j {
+			return i - j
+		}
+	}
+	return -1
+}
+
+func nextArrLast(needle string, lenNeedle int) []int {
+	next := make([]int, lenNeedle)
+
+	for i := 1; i < lenNeedle; i++ {
+		preNextVal := next[i-1]
+		for preNextVal > 0 && needle[preNextVal] != needle[i] {
+			preNextVal = next[preNextVal-1]
+		}
+		if needle[preNextVal] == needle[i] {
+			preNextVal++
 		}
 		next[i] = preNextVal
 	}
