@@ -1,7 +1,8 @@
 package main
 
 func main() {
-	s := "abcabcdef"
+	// https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
+	s := "abcabcbb"
 	println(lengthOfLongestSubstring(s))
 }
 

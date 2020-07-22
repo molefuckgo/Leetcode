@@ -3,8 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	// var nums1 = []int{1, 3, 9, 10}
-	// var nums2 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	// https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
+	var nums1 = []int{1, 3, 9, 10}
+	var nums2 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	// var nums1 = []int{1, 1, 1, 1}
 	// var nums2 = []int{0, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	// var nums1 = []int{1, 2}

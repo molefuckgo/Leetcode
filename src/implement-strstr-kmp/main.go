@@ -8,6 +8,7 @@ func main() {
 	// txt := ""
 	// "mississippi"
 	// "issip"
+	// https://leetcode-cn.com/problems/implement-strstr/
 	needle := "issip"
 	haystack := "mississippi"
 	fmt.Println(strStrLast(haystack, needle))

@@ -6,7 +6,7 @@ import (
 
 func main() {
 	s := "012345"
-	fmt.Print(string(s[0]) + string(s[1]))
+	fmt.Println(string(s[0]) + string(s[1]))
 }
 
 // public static String Manacher(String s) {
