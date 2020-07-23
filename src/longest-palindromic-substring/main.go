@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	// https://leetcode-cn.com/problems/longest-palindromic-substring/
 	fmt.Println(longestPalindrome("bb"))
 }
 

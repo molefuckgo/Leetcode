@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// https://leetcode-cn.com/problems/implement-rand10-using-rand7/
 	var num_list [10]int
 	for i := 0; i < 100000; i++ {
 		// fmt.Println(rand10())
