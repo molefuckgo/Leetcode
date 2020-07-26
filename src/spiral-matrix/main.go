@@ -4,63 +4,55 @@ import "fmt"
 
 func main() {
 	var matrix = [][]int{
-		{2, 3},
-		// {4, 5, 6},
-		// {7, 8, 9},
-		// {10, 11, 12},
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		// {5, 6},
 	}
 	fmt.Println(spiralOrder(matrix))
 }
 
 func spiralOrder(matrix [][]int) []int {
+	numberList := make([]int, 0)
 	matrixRows := len(matrix)
-
-	if matrixRows == 0 {
-		return make([]int, 0)
+	if len(matrix) == 0 {
+		return numberList
 	}
 	matrixColumns := len(matrix[0])
-	result := make([]int, 0)
-	return spiralMatrix(matrixRows, matrixColumns, 0, matrix, result)
-}
-
-func spiralMatrix(matrixRows int, matrixColumns int, t int, matrix [][]int, result []int) []int {
-	i := 0
-	j := 0
-	for j < matrixColumns {
-		result = append(result, matrix[i+t][j+t])
-		if j+1 < matrixColumns {
-			j++
-		} else {
-			break
+	l := 0
+	r := matrixColumns - 1
+	t := 0
+	b := matrixRows - 1
+	for l <= r && t <= b {
+		for i := l; i <= r; i++ {
+			numberList = append(numberList, matrix[t][i])
 		}
-	}
-	i++
-	for i < matrixRows {
-		result = append(result, matrix[i+t][j+t])
-		if i+1 < matrixRows {
-			i++
-		} else {
-			break
-		}
-	}
-	j--
-	for j >= 0 && j+t < matrixColumns-1 {
-		result = append(result, matrix[i+t][j+t])
-		if j-1 >= 0 {
-			j--
-		} else {
-			break
-		}
-	}
-	i--
-	for ; i >= 1; i-- {
-		result = append(result, matrix[i+t][j+t])
-	}
-	if matrixColumns-2 > 0 {
 		t++
-		return spiralMatrix(matrixRows-2, matrixColumns-2, t, matrix, result)
-	} else {
-		return result
-	}
+		if t > b {
+			return numberList
+		}
 
+		for i := t; i <= b; i++ {
+			numberList = append(numberList, matrix[i][r])
+		}
+		r--
+		if l > r {
+			return numberList
+		}
+
+		for i := r; i >= l; i-- {
+			numberList = append(numberList, matrix[b][i])
+		}
+		b--
+		if b < t {
+			return numberList
+		}
+
+		for i := b; i >= t; i-- {
+			numberList = append(numberList, matrix[i][l])
+		}
+		l++
+
+	}
+	return numberList
 }
