@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var arr = []int{2, 2, 2, 0, 1}
+	var arr = []int{1, 2, 2, 0, 1, 2}
 	fmt.Println(minArray(arr))
 }
 
@@ -15,7 +15,7 @@ func minArray(numbers []int) int {
 		if numbers[right] < numbers[middle] {
 			left = middle + 1
 		} else if numbers[right] > numbers[middle] {
-			right = middle - 1
+			right = middle
 		} else { // 相等的情况缩小右边界，这样至少中间最小的能留下，不会影响结果
 			right -= 1
 		}

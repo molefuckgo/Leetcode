@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(spiralMatrixIII2(5, 6, 1, 4))
+	fmt.Println(spiralMatrixIII(1, 4, 0, 0))
 }
 
 //在 R 行 C 列的矩阵上，我们从 (r0, c0) 面朝东面开始
@@ -53,6 +53,7 @@ func main() {
 // Related Topics 数学
 // 👍 37 👎 0
 
+// 方法1
 type DirectionType struct {
 	right int
 	down  int
@@ -125,6 +126,7 @@ func nextTodo(nowDirection int, nowPositionRow int, nowPositionColumn int) (int,
 	return nowPositionRow, nowPositionColumn
 }
 
+//方法2
 func spiralMatrixIII(R int, C int, r0 int, c0 int) [][]int {
 	l := c0
 	r := c0
@@ -133,11 +135,46 @@ func spiralMatrixIII(R int, C int, r0 int, c0 int) [][]int {
 
 	positionList := make([][]int, 0)
 	for len(positionList) < R*C {
-		// for
+
 		if check(r0, c0, R, C) {
 			var position = []int{r0, c0}
 			positionList = append(positionList, position)
 		}
+		c0++
+
+		for c0 <= r {
+			if check(r0, c0, R, C) {
+				var position = []int{r0, c0}
+				positionList = append(positionList, position)
+			}
+			c0++
+		}
+		r++
+		for r0 <= b {
+			if check(r0, c0, R, C) {
+				var position = []int{r0, c0}
+				positionList = append(positionList, position)
+			}
+			r0++
+		}
+		b++
+
+		for c0 >= l {
+			if check(r0, c0, R, C) {
+				var position = []int{r0, c0}
+				positionList = append(positionList, position)
+			}
+			c0--
+		}
+		l--
+		for r0 >= t {
+			if check(r0, c0, R, C) {
+				var position = []int{r0, c0}
+				positionList = append(positionList, position)
+			}
+			r0--
+		}
+		t--
 	}
 	return positionList
 }
