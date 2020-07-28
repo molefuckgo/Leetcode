@@ -15,6 +15,8 @@ func main() {
 	//	num:48 - 57
 }
 
+// https://leetcode-cn.com/problems/string-to-integer-atoi/
+
 func myAtoi2(str string) int {
 	result := 0
 	sliIndex := 0
