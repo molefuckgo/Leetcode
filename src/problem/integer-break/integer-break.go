@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	fmt.Println(integerBreak(15))
+	fmt.Println(integerBreak(6))
 }
 
-func integerBreak(n int) int {
+func integerBreak2(n int) int {
 	if n == 2 {
 		return 1
 	} else if n == 3 {
@@ -30,5 +30,21 @@ func integerBreak(n int) int {
 		return beforeResult * 3
 	} else {
 		return beforeResult * 4
+	}
+}
+
+func integerBreak(n int) int {
+	if n <= 3 {
+		return n - 1
+	}
+	timesThree := n / 3
+	remanent := n % 3
+
+	if remanent == 0 {
+		return int(math.Pow(float64(3), float64(timesThree)))
+	} else if remanent == 1 {
+		return int(math.Pow(float64(3), float64(timesThree-1))) * 4
+	} else {
+		return int(math.Pow(float64(3), float64(timesThree))) * 2
 	}
 }
