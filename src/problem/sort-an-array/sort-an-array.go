@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	nums := []int{5, 2, 3, 1}
+	nums := []int{5, 1, 1, 2, 0, 0}
 	fmt.Println(sortArray(nums))
 }
 
