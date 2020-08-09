@@ -1,7 +1,11 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	mmap := make(map[int]int)
+	length, ok := mmap[4]
+	fmt.Println(length, ok)
 }
 
 func longestSubsequence(arr []int, difference int) int {
@@ -13,11 +17,9 @@ func longestSubsequence(arr []int, difference int) int {
 	memoMap := make(map[int]int)
 	memoMap[arr[0]] = 1
 	for i := 1; i < arrLen; i++ {
-		if length, ok := memoMap[arr[i]-difference]; ok {
-			memoMap[arr[i]] = length + 1
-		} else {
-			memoMap[arr[i]] = 1
-		}
+		length := memoMap[arr[i]-difference]
+		memoMap[arr[i]] = length + 1
+
 		maxLength = max2(memoMap[arr[i]], maxLength)
 	}
 	return maxLength
