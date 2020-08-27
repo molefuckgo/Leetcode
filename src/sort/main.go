@@ -69,6 +69,7 @@ func quickSort(arr []int, start, end int) []int {
 		i := start
 		j := end
 
+
 		for i < j {
 
 			for arr[j] >= mid && i < j {
