@@ -52,7 +52,7 @@ func addTwoNumint32(x, y byte, z int) (byte, int) { // 相加后的值，是否�
 	var carry int
 	if result >= '9'+1 {
 		carry = 1
-		result -= ('9' - '0' + 1)
+		result -= '9' - '0' + 1
 	} else {
 		carry = 0
 	}
