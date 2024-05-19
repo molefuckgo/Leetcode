@@ -1,0 +1,1 @@
+SELECT id FROM Weather WHERE id > 1 AND

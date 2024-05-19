@@ -30,7 +30,7 @@ func preorderTraversal(root *TreeNode) []int {
 	return result
 }
 */
-
+// 二叉树前序遍历
 func preorderTraversal(root *TreeNode) []int {
 	var stack []*TreeNode
 	var result []int

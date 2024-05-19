@@ -35,7 +35,7 @@ func inorderTraversal2(root *TreeNode, result *[]int) {
 	inorderTraversal2(root.Right, result)
 }
 */
-
+// 二叉树中序遍历
 func inorderTraversal(root *TreeNode) []int {
 	var result = make([]int, 0)
 	var stack = []*TreeNode{}
