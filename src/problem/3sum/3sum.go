@@ -20,7 +20,7 @@ n:计算几个数之和
 start:从第几个数字开始计算
 target:目标
 */
-func nSumTarget(nums []int, n, start, target int) (res [][]int) {
+/*func nSumTarget(nums []int, n, start, target int) (res [][]int) {
 	var sz = len(nums)
 	if sz < n || n < 2 {
 		return
@@ -59,4 +59,45 @@ func nSumTarget(nums []int, n, start, target int) (res [][]int) {
 		}
 	}
 	return
+}*/
+
+func nSumTarget(nums []int, n, start, target int) [][]int {
+	var sz = len(nums)
+	var result = [][]int{}
+	if len(nums) < n {
+		return result
+	}
+
+	if n == 2 {
+		var low, high = start, len(nums) - 1
+		for low < high {
+			var left, right = nums[low], nums[high]
+			var sum = nums[low] + nums[high]
+			if sum > target {
+				high--
+			} else if sum < target {
+				low++
+			} else {
+				result = append(result, []int{nums[low], nums[high]})
+				for high > low && nums[low] == left {
+					low++
+				}
+				for high > low && nums[high] == right {
+					high--
+				}
+			}
+		}
+	} else {
+		for i := start; i < sz; i++ {
+			var sub = nSumTarget(nums, n-1, i+1, target-nums[i])
+			for _, arr := range sub {
+				arr = append(arr, nums[i])
+				result = append(result, arr)
+			}
+			for i < sz-1 && nums[i] == nums[i+1] {
+				i++
+			}
+		}
+	}
+	return result
 }

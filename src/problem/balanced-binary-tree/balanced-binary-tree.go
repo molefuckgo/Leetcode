@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
@@ -43,10 +42,10 @@ type TreeNode struct {
 
 func isBalanced(root *TreeNode) bool {
 	// if root == nil || (root.Left == nil && root.Right == nil) {
-
+	return false
 }
 
 func frontOrderPrint(node *TreeNode, curHeight, minHeight, maxHeight int) (int, int) {
 	//fmt.Println("fuck", node == nil)
-
+	return 0, 0
 }

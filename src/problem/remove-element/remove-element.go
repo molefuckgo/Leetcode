@@ -8,11 +8,17 @@ func main() {
 
 func removeElement(nums []int, val int) int {
 	i := 0
-	for _, num := range nums {
+	for index, num := range nums {
 		if num != val {
 			nums[i] = num
 			i++
+		} else {
+			deleteIndexElement(&nums, index)
 		}
 	}
 	return i
+}
+
+func deleteIndexElement(nums *[]int, index int) {
+	*nums = append((*nums)[:index], (*nums)[index+1:]...)
 }
