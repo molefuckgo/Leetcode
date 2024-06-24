@@ -1,10 +1,13 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	var numArray = Constructor([]int{-1})
+	fmt.Println(numArray.SumRange(0, 0))
 }
 
-type NumArray struct {
+/*type NumArray struct {
 	nums []int
 }
 
@@ -24,10 +27,26 @@ func (this *NumArray) SumRange(i int, j int) int {
 	} else {
 		return 0
 	}
+}*/
+
+type NumArray struct {
+	preSum []int
 }
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * obj := Constructor(nums);
- * param_1 := obj.SumRange(i,j);
- */
+func Constructor(nums []int) NumArray {
+	var numsLen = len(nums)
+	var preSum = make([]int, numsLen+1)
+	for i, num := range nums {
+		preSum[i+1] = preSum[i] + num
+	}
+	return NumArray{
+		preSum: preSum,
+	}
+}
+
+func (this *NumArray) SumRange(left int, right int) int {
+	if left > right || left < 0 {
+		return 0
+	}
+	return this.preSum[right+1] - this.preSum[left]
+}
